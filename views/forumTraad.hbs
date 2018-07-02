@@ -1,0 +1,67 @@
+<h1>Forum</h1>
+
+<div class="forumContainer tråd">
+	<p class="sti"><a href="/forum/">Hjem</a> -> <a href="/forum/kategori/{{kategori}}/">{{kategori}}</a> -> <a href="/forum/tråd/{{id}}/">{{emne}}</a></p>
+	<div class="toDelt">
+		<div class="forumListe venstre">
+			<h2>{{emne}}</h2>
+			<ol>
+			{{#each innlegg}}
+				<li class="kommentar">
+					<a class="anchor" id="{{id}}"></a>
+					<div class="listeObj">
+						<div class="venstredel">
+							<div class="brukerdel">
+								{{#with bruker}}
+								<a href="/bruker/{{navn}}/" class="bruker">
+									<img class="bilde" src="{{bilde}}" alt="{{navn}}" title="{{navn}}">
+								</a>
+								<a href="/bruker/{{navn}}/" class="navn">{{navn}}</a>
+								{{/with}}
+							</div>
+							<div class="underdel">
+								<span class="dato" title="{{opprettetDato.[1]}}">{{opprettetDato.[0]}}</span>
+							</div>
+						</div>
+						<div class="hoveddel">
+							<div class="tekst markdown">
+								{{markdown innhold}}
+							</div>
+							<div class="toolbar">
+								{{#if ../bruker}}
+									{{#if innloggetBruker}}
+										<button>Rediger</button>
+										<button>Slett</button>
+									{{/if}} 
+									<button>Lik</button>
+								{{/if}}
+							</div>
+						</div>
+					</div>
+				</li>
+			{{/each}}
+				<li class="kommentar ny {{#if bruker}}nyKommentar{{else}}brukerKnapp{{/if}}">
+					<div class="listeObj">
+						<div class="venstredel">
+							<div class="bruker">
+								<img class="bilde" src="/media/layout/forum/pluss.svg" alt="Legg til kategori">
+							</div>
+						</div>
+						<form action="" class="hoveddel" method="POST">
+							{{#if bruker}}
+								<h3 class="navn">Legg til kommentar</h3>
+							{{else}}
+								<h3 class="navn">Logg inn for å legge til kommentarer</h3>
+							{{/if}}
+
+							{{!-- legges til av js :
+							<textarea name="kommentarInnhold"></textarea>
+							<input type="submit" value="Legg til" name="nyKommentar">
+							--}}
+						</form>
+					</div>
+				</li>
+			</ol>
+		</div>
+	</div>
+</div>

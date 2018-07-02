@@ -1,0 +1,20 @@
+/* gjør bakgrunnen mørkere for å øke leseligheten til tekstene */
+.hoved {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+/* div for max-størrelse for å øke leseligheten til tekstene */
+.maxstorrelse {
+	max-width: 1000px;
+	margin: auto;
+}
+
+.innhold {
+	list-style-type: none;
+	padding: 0;
+}
+.innhold h4 {
+	margin: 0;
+}

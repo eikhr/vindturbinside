@@ -1,0 +1,374 @@
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+    font-family: 'Rubik', sans-serif;
+    text-align: left;
+}
+.markdown h1 {
+    color: white;
+}
+.markdown img {
+    max-height: 400px;
+}
+
+
+
+.sti {
+    max-width: 1400px;
+    margin: 5px auto;
+    padding: 0 50px;
+    text-align: left;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+}
+.sti>a {
+    color: inherit;
+}
+
+
+.forumContainer {
+    max-width: 1400px;
+    margin: 20px auto;
+}
+.toDelt {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.venstre, .hoyre {
+    display: flex;
+    flex-direction: column;
+}
+.venstre {
+    flex-grow: 1;
+}
+
+.forumListe {
+    display: inline-block;
+    background-color: rgba(50, 50, 50, 0.8);
+    margin: 0 20px 20px 20px;
+    border: 1px solid rgba(0,0,0,0.5);
+}
+.forumListe.venstre {
+    position: relative;
+
+    flex-grow: 1;
+}
+.forumListe.hoyre {
+    width: 350px;
+    flex-shrink: 0;
+}
+.forumListe .listeObj{
+    padding: 20px;
+}
+.forumListe .listeObj .antall {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.forumListe .listeObj .antall>.tekst {
+    color: #DDDDDD;
+    font-size: 14px;
+}
+.forumListe .listeObj .antall>.nummer {
+    color: #FFFFFF;
+    font-size: 26px;
+}
+
+
+
+.forumListe>h2 {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: Rubik, sans-serif;
+    font-size: 20px;
+    margin: 0;
+}
+.forumListe>ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    text-align: left;
+}
+.forumListe>ol a {
+    text-decoration: none;
+}
+.forumListe .listeObj:hover {
+    background-color: rgba(0,0,0,0.3);
+}
+.forumListe .listeObj .bilde {
+    flex-shrink: 0;
+
+    height: 50px;
+    width: 50px;
+
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 50%;
+
+    background-color: white;
+}
+.forumListe .listeObj .navn {
+    font-weight: bold;
+    margin: 0;
+}
+.forumListe p {
+    margin: 0;
+}
+
+.forumListe .kategori>.listeObj {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.forumListe .kategori>.listeObj> .info {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 20px;
+    margin-left: 20px;
+
+}
+
+
+.forumListe .tråd .listeObj {
+    display: flex;
+    flex-direction: row;
+}
+.forumListe .tråd .hoveddel {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+.forumListe .tråd .hoveddel .øverstdiv {
+    display: flex;
+
+    flex-direction: row;
+}
+.forumListe .tråd .hoveddel .trådlenke {
+    margin-left: 20px;
+
+    flex-grow: 1;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+.forumListe .tråd .hoveddel .trådlenke>p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 20px;     /* fallback */
+    max-height: 60px;      /* fallback */
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+
+/* stil for /tråd/ siden */
+.forumContainer.tråd {
+    max-width: 1200px;
+}
+.tråd .forumListe>h2 {
+    font-size: 30px;
+    padding: 6px 0;
+}
+.forumListe .kommentar .listeObj {
+    display: flex;
+    flex-direction: row;
+}
+.forumListe .kommentar .venstredel {
+    width: 200px;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.forumListe .kommentar .brukerdel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.forumListe .kommentar .brukerdel .bilde {
+    height: 80px;
+    width: 80px;
+}
+.forumListe .kommentar .brukerdel .navn {
+    font-size: 20px;
+
+    margin: 0 10px;
+}
+.forumListe .kommentar .hoveddel {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-left: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.forumListe .kommentar .hoveddel .tekst {
+    line-height: 22px;
+}
+.forumListe .kommentar .hoveddel .tekst a {
+    text-decoration: underline;
+}
+.forumListe .kommentar .hoveddel .toolbar {
+    text-align: right;
+}
+
+/* For legg til kommentar greia */
+.forumListe .ny .hoveddel {
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    justify-content: stretch;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin: 0;
+}
+.forumListe .ny .hoveddel>div {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.forumListe .ny .hoveddel textarea {
+    height: 80px;
+    resize: vertical;
+}
+.forumListe .nyKategori .hoveddel {
+    margin-left: 20px;
+}
+
+
+
+.innleggLiten .listeObj {
+    padding: 10px;
+}
+.innleggLiten .tråd {
+    text-decoration: none;
+
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    margin-bottom: 5px;
+}
+.forumListe .innleggLiten .bilde {
+    height: 40px;
+    width: 40px;
+}
+.innleggLiten .hoveddel {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.innleggLiten .hoveddel>.tekst {
+    margin-left: 10px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 20px;     /* fallback */
+    max-height: 40px;      /* fallback */
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+
+/* Stil for "legg til" knappene */
+.forumListe .ny .listeObj {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.forumListe .ny .listeObj h3 {
+    margin-left: 20px;
+}
+
+.underdel {
+    margin-top: 2px;
+    font-size: 14px;
+    color: #CCCCCC;
+}
+
+
+@media (max-width: 1000px) {
+    .toDelt {
+        flex-direction: column;
+        justify-content: stretch;
+        align-items: stretch;
+    }
+    .forumListe.hoyre, .forumListe.venstre {
+        width: auto;
+    }
+
+    .forumListe .kommentar .listeObj {
+        flex-direction: column;
+    }
+    .forumListe .kommentar .venstredel {
+        width: auto;
+        flex-direction: row;
+
+        justify-content: space-between;
+
+        margin-bottom: 10px;
+    }
+    .forumListe .kommentar .brukerdel {
+        width: auto;
+        flex-direction: row;
+    }
+    .forumListe .kommentar .hoveddel {
+        margin: 0;
+    }
+    .forumListe .kommentar .brukerdel .bilde {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .forumListe .kommentar.ny .hoveddel {
+        flex-direction: column;
+        width: 100%;
+    }
+    .forumListe .kommentar.ny .hoveddel textarea {
+        max-width: 1000px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .sti {
+        padding: 0 10px;
+    }
+
+    .forumListe .listeObj .antall {
+        display: none;
+    }
+    .forumListe {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .forumListe>ol>li>.listeObj {
+        padding: 10px;
+    }
+    .forumListe>ol>.kategori>.listeObj>.info {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .forumListe>ol>a>.kategori .info {
+        margin: 5px;
+    }
+}

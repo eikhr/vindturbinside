@@ -1,0 +1,21 @@
+{{#with hoveddel}}
+<nav class="sidenav vis">
+	<h3>Tekster</h3>
+	{{#each kategorier}}
+		<a href="/tekster/{{URINavn}}/" {{#if vises}}class="aktiv"{{/if}}>
+			{{navn}}<br>
+			<span>{{antallTekster}} tekster</span>
+		</a>
+	{{/each}}
+	<div id="sidenavKnapp"></div>
+</nav>
+<div class="innholdSidenav">
+	<div class="maxstorrelse tekstDiv">
+		{{{tekster}}}
+	</div>
+</div>
+
+<script src="{{lagLink '/JS/sidenav.js'}}"></script>
+
+{{!<script src="{lagLink '/JS/tekster.js'}"></script>}}
+{{/with}}

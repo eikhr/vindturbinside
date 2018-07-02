@@ -1,0 +1,51 @@
+<h1>Forum</h1>
+
+<div class="forumContainer">
+	<p class="sti"><a href="/forum/">Hjem</a> -> <a href="/forum/kategori/{{kategori}}/">{{kategori}}</a></p>
+	<div class="toDelt">
+		<div class="forumListe venstre">
+			<h2>Tråder i "{{kategori}}"</h2>
+			<ol>
+				<li class="ny {{#unless bruker}}brukerKnapp{{/unless}}">
+					<a {{#if bruker}} href="/forum/ny_tråd/{{kategori}}" {{/if}} class="listeObj">
+						<img class="bilde" src="/media/layout/forum/pluss.svg" alt="Legg til kategori">
+						{{#if bruker}}
+							<h3 class="navn">Start ny tråd</h3>
+						{{else}}
+							<h3 class="navn">Logg inn for å starte en ny tråd</h3>
+						{{/if}}
+					</a>
+				</li>
+			{{#each traader}}
+				<li class="tråd">
+					<div class="listeObj">
+						<div class="hoveddel">
+							<div class="øverstdiv">
+								<a href="/bruker/{{bruker.navn}}" class="bruker">
+									<img class="bilde" src="{{bruker.bilde}}" alt="{{bruker.navn}}" title="{{bruker.navn}}">
+								</a>
+								<a href="/forum/tråd/{{id}}/" class="trådlenke">
+									<h3 class="navn">{{navn}}</h3>
+									<p class="innhold">{{ikkemarkdown innhold}}</p>
+								</a>
+							</div>
+							<p class="underdel">
+								<span>Av: <a href="/bruker/{{bruker.navn}}/" class="brukernavn">{{bruker.navn}}{{#if bruker.admin}}<img class="adminIkon" title="Administrator" src="/media/layout/admin.svg" height="20" width="20">{{/if}}</a></span>
+								<span class="dato" title="{{dato.[1]}}">{{dato.[0]}}</span>
+							</p>
+						</div>
+						<div class="antall">
+							<p class="tekst">Kommentarer</p>
+							<p class="nummer">{{antallKommentarer}}</p>
+						</div>
+					</div>
+				</li>
+			{{/each}}
+			</ol>
+		</div>
+		<div class="forumListe hoyre">
+			<h2>Siste i "{{kategori}}"</h2>
+			{{> partialForumSisteKommentarer }}
+		</div>
+	</div>
+</div>

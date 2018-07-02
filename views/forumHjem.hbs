@@ -1,0 +1,41 @@
+<h1>Forum</h1>
+
+<div class="forumContainer">
+	<p class="sti"><a href="/forum/">Hjem</a></p>
+	<div class="toDelt">
+		<div class="forumListe venstre">
+			<h2>Kategorier</h2>
+			<ol>
+			{{#each kategorier}}
+				<li class="kategori">
+					<a href="kategori/{{url}}/" class="listeObj">
+						<img class="bilde" src="{{bilde}}" alt="{{navn}}">
+						<div class="info">
+							<h3 class="navn">{{navn}}</h3>
+							<p class="beskrivelse">{{beskrivelse}}</p>
+						</div>
+						<div class="antall">
+							<p class="tekst">Tråder</p>
+							<p class="nummer">{{antallTraader}}</p>
+						</div>
+					</a>
+				</li>
+			{{/each}}
+			{{#if bruker.admin}}
+				<li class="ny nyKategori">
+					<div class="listeObj">
+						<img class="bilde" src="/media/layout/forum/pluss.svg" alt="Legg til kategori">
+						<form class="info hoveddel" action="" method="POST">
+							<h3 class="navn">Legg til en kategori</h3>
+						</form>
+					</div>
+				</li>
+			{{/if}}
+			</ol>
+		</div>
+		<div class="forumListe hoyre">
+			<h2>Siste kommentarer</h2>
+			{{> partialForumSisteKommentarer }}
+		</div>
+	</div>
+</div>

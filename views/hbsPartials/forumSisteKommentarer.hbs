@@ -1,0 +1,16 @@
+<ol>
+{{#each sisteKommentarer}}
+	<li class="innleggLiten">
+		<div class="listeObj">
+			<a href="/forum/tråd/{{emneID}}/" class="tråd" title="{{emne}}">{{emne}}</a>
+			<div class="hoveddel">
+				<a href="/bruker/{{bruker.navn}}/">
+					<img src="{{bruker.bilde}}" class="bilde" alt="{{bruker.navn}}" title="{{bruker.navn}}">
+				</a>
+				<a href="/forum/tråd/{{emneID}}/#{{kommentarID}}" class="tekst">{{ikkemarkdown tekst}}</a>
+			</div>
+			<p class="dato underdel" title="{{dato.[1]}}">{{dato.[0]}}</p>
+		</div>
+	</li>
+{{/each}}
+</ol>

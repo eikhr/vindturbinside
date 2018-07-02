@@ -1,0 +1,70 @@
+// finner videobakgrunnen
+var bakgrunn = document.querySelector("#video-background");
+// finner pause/play knappen
+var bakgrunnKnapp = document.querySelector("#bgPause");
+// variable for å huske om bakgrunnen er pauset
+var bakgrunnPauset = false;
+
+
+window.onload = oppstart;
+
+function oppstart() {
+	// legger til eventlistener
+	bakgrunnKnapp.addEventListener("click", bgPauseKnapp);
+
+	// henter cookie som husker om bakgrunnen er pauset
+	bakgrunnPauset = (getCookie("bgPaused") === "true");
+	pauseAnimasjon();
+}
+
+function bgPauseKnapp() {
+    bakgrunnPauset = !bakgrunnPauset;
+    pauseAnimasjon()
+}
+
+function pauseAnimasjon() {
+    var animationPlayStyle;
+    
+    if (bakgrunnPauset) {
+        bakgrunn.pause();
+        animationPlayStyle = "paused";
+        bakgrunnKnapp.src = "/media/play.svg";
+        setCookie("bgPaused", "true", 30);
+    } else {
+        bakgrunn.play();
+        animationPlayStyle = "running";
+        bakgrunnKnapp.src = "/media/pause.svg";
+        setCookie("bgPaused", "false", 30);
+    }
+    
+    var animatedEls = document.querySelectorAll(".animated");
+    for (var i = 0; i < animatedEls.length; i++) {
+        animatedEls[i].style.animationPlayState = animationPlayStyle;
+    }
+}
+
+
+// COOKIE STUFF
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    console.log(decodedCookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}

@@ -1,0 +1,318 @@
+/* STIL FOR TOPNAVIGASJONEN */
+
+/* topnav menyen */
+.topbar {
+	/* setter posisjon og størrelse */
+	height: 40px;
+	width: 100%;
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	overflow: visible;
+
+	/* fikser innholdet */
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: #333333;
+}
+
+
+/* hjemknappen / logoen hvis vi får en */
+.logo {
+	font-family: 'Pacifico', cursive;
+	font-size: 30px;
+	flex-grow: 0;
+	padding: 0 2px;
+}
+
+
+/* navigasjonsdelen */
+.topnav {
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+	flex-grow: 1;
+}
+
+/* navigasjonslenker */
+.topnav>a, .logo {
+	display: block;
+	padding: 0 20px;
+	margin: 0;
+	text-align: center;
+	line-height: 40px;
+	color: #e0e0e0;
+	text-decoration: none;
+}
+.topnav>a.aktiv {
+	background-color: #1F1F1F;
+	color: white;
+}
+.logo {
+	padding: 0 10px;
+	color: #FFFFFF;
+}
+
+/* brukerdelen */
+#userArea {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+	background-color: #333333;
+
+	width: auto;
+
+	font-family: inherit;
+
+	color: #e0e0e0;
+	text-decoration: none;
+	padding: 0 0 0 10px;
+	margin: 0;
+	text-align: center;
+	line-height: 40px;
+}
+
+#userArea>.brukerBilde {
+	margin: 5px 5px;
+	height: 30px;
+	width: 30px;
+}
+
+#userArea input {
+	height: 30px;
+	margin: 5px 0;
+	border: 0;
+}
+
+.navBruker {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 40px;
+
+	width: 400px;
+	box-sizing: border-box;
+	max-width: 100%;
+
+	padding: 5px;
+	padding-top: 15px;
+
+	text-align: center;
+	background-color: #444444;
+	color: white;
+	border: 1px solid black;
+}
+.navBruker.login {
+	padding: 15px 15px 0 15px;
+}
+.navBruker.vis {
+	display: block;
+}
+
+.navBruker h1 {
+	font-size: 30px;
+	word-wrap: break-word;
+	color: white;
+	padding: 0;
+	margin-top: 5px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navBruker .brukerBildeDiv {
+	display: inline-block;
+	position: relative;
+	height: 100px;
+	width: 100px;
+}
+.navBruker .brukerBildeDiv img {
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+}
+.navBruker .brukerBildeDiv div {
+	position: absolute;
+	top: 0;
+	line-height: 100px;
+	border-radius: 50%;
+	background-color: black;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+}
+.navBruker>.brukerBildeDiv div:hover {
+	opacity: 0.5;
+}
+
+.navBruker .tableDiv {
+	overflow-x: auto;
+}
+.navBruker table {
+	width: 100%;
+	margin: 10px 0;
+}
+.navBruker tr {
+	height: 40px;
+}
+.navBruker th {
+	width: 60px;
+	padding: 0;
+}
+.navBruker td:nth-child(3) {
+    width: 60px;
+    padding: 0;
+}
+
+.navBruker input[type="text"], .navBruker input[type="submit"], .navBruker input[type="password"] {
+	box-sizing: border-box;
+	width: 100%;
+	margin-right: 0;
+	margin-left: 0;
+}
+.navBruker input[type="submit"] {
+	padding: 0;
+	margin: 0;
+}
+.navBruker input[type="checkbox"] {
+	margin-bottom: 10px;
+}
+
+
+/* hover effekt på linkene */
+.topnav>a:hover, .logo:hover {
+	background-color: #FFFFFF;
+	color: #000000;
+	animation-name: navAnimation;
+	animation-duration: 1s;
+}
+
+/* hover effekt på knappene */
+#userArea:hover, #userArea.vis, #navButton:hover, #navButton.vis {
+	background-color: black;
+}
+
+@keyframes navAnimation {
+	0% {background-color: #333333; color: #FFFFFF;}
+	100% {background-color: #FFFFFF; color: #000000;}
+}
+
+
+/* ######################################################################## */
+/* CSS for mobil */
+
+/* menyknappen */
+#navButton {
+	border-radius: 0;
+	line-height: 0;
+	background-color: inherit;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	height: 40px;
+	width: 40px;
+	display: none;
+	text-align: center;
+	flex-shrink: 0;
+}
+
+
+/* KODE FOR ANIMASJON AV MENYKNAPPEN men den virket ikke på IE og Edge så jeg brukte en js løsning i stedet
+.menyKnappLinje1 {
+	transition: 0.6s;
+	transform-origin: 50% 50%;
+	transform: rotate(0deg) translateY(0px);
+}
+#navButton.vis .menyKnappLinje1 {
+	transition: 0.6s;
+	transform: rotate(45deg) translateY(12px);
+}
+
+.menyKnappLinje2 {
+	transition: 0.6s;
+	stroke: rgba(221,221,221,1);
+}
+#navButton.vis .menyKnappLinje2 {
+	transition: 0.6s;
+	stroke: rgba(221,221,221,0);
+}
+
+.menyKnappLinje3 {
+	transition: 0.6s;
+	transform-origin: 50% 50%;
+	transform: rotate(0deg) translateY(0px);
+}
+#navButton.vis .menyKnappLinje3 {
+	transition: 0.6s;
+	transform: rotate(-45deg) translateY(-12px);
+}
+*/
+
+@keyframes navAnimation {
+	0% {background-color: #333333; color: #FFFFFF;}
+	100% {background-color: #FFFFFF; color: #000000;}
+}
+
+@media screen and (max-width: 1000px) {
+	.topnav>a {
+		padding: 0 10px;
+	}
+}
+
+@media screen and (max-width: 850px) {
+	#userArea>span {
+		display: none;
+	}
+	#userArea {
+		padding: 0;
+	}
+
+	/* viser knappen */
+	#navButton {
+		display: block;
+	}
+
+	/* setter css for nedtrekksmenyen */
+	.topnav {
+		display: block;
+		position: absolute;
+		left: -210px;
+		top: 40px;
+		width: 200px;
+		border: 1px solid black;
+		border-top: none;
+		z-index: 5;
+	}
+	.topnav a {
+		height: 40px;
+		line-height: 40px;
+		display: block;
+		width: 100%;
+		padding: 0;
+		text-align: center;
+		border-top: 1px solid black;
+		border-bottom: 0;
+		background-color: #444444;
+	}
+
+	/* for å vise og skjule menyen med js */
+	.topnav.vis {
+		transition: 1s;
+		left: 0;
+	}
+	.topnav.skjul {
+		transition: 1s;
+		left: -210;
+	}
+
+
+	#userArea {
+		width: auto;
+	}
+	nav>a {
+		display: none;
+	}
+}

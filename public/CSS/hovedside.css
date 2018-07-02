@@ -1,0 +1,80 @@
+/* overskriftanimasjon */
+@keyframes tittel {
+    0% {
+        letter-spacing: auto;
+    }
+    100% {
+        letter-spacing: 20px;
+    }
+}
+@keyframes tittelFarge {
+    0% {
+        color: orangered;
+    }
+    100% {
+        color: white;
+    }
+}
+
+h1.animated{
+    animation: tittelFarge 1.5s linear 0s infinite alternate;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1.animated:hover{
+    animation-name: tittel
+}
+
+
+/* norshipping countdown */
+iframe#nedtelling {
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: #354667;
+}
+
+
+/* radioaktivitetssymboler ved overskriften */
+.radioakt{
+    height: 40px;
+    width: 40px;
+}
+
+.radioakt{
+    animation: rotation 0.5s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+            transform: rotate(0deg);
+    }
+    to {
+            transform: rotate(359deg);
+    }
+}
+
+/* css for mobiltelefon */
+@media (max-width: 500px){
+    .radioakt{
+        height: 20px;
+        width: 20px;
+    }
+    h1{
+        font-size: 28px;
+    }
+}
+
+/* fikser link på norshipping countdown */
+.linkwrap { position:relative; display:inline-block; }
+.blocker { position:absolute; height:100%; width:100%; z-index:1;  }
+.linkwrap iframe { z-index: 2; }
+
+/* fikser diven som er en link */
+a.nostyle {
+    text-decoration: none;
+    color: white;
+}
+a .innediv:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}

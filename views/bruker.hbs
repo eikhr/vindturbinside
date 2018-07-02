@@ -1,0 +1,61 @@
+<h1 class="brukernavn">{{omBruker.navn}}{{#if omBruker.admin}}<img class="adminIkon" title="Administrator" src="/media/layout/admin.svg" height="40" width="40">{{/if}}</h1>
+<img class="brukerBilde" src="{{omBruker.bilde}}">
+<div class="forumContainer">
+	<div class="toDelt">
+		<div class="venstre">
+			<div class="forumListe venstre">
+			{{#with omBruker}}
+				<h2>Om {{navn}}</h2>
+				<div class="brukerinfo">
+					<div>
+						<p>Poeng</p>
+						<p class="tall">{{poeng}}</p>
+					</div>
+					<div>
+						<p>Medlem i</p>
+						<p title="{{alder.[1]}}">{{{alder.[0]}}}</p>
+					</div>
+					<div>
+						<p>Admin</p>
+						<p class="tall">{{#if admin}}Ja{{else}}Nei{{/if}}</p>
+					</div>
+				</div>
+			{{/with}}
+			</div>
+			<div class="forumListe venstre">
+				<h2>Tråder postet av {{omBruker.navn}}</h2>
+				<ol>
+				{{#each traader}}
+					<li class="tråd">
+						<div class="listeObj">
+							<div class="hoveddel">
+								<div class="øverstdiv">
+									<a href="/bruker/{{bruker.navn}}" class="bruker">
+										<img class="bilde" src="{{bruker.bilde}}" alt="{{bruker.navn}}" title="{{bruker.navn}}">
+									</a>
+									<a href="/forum/tråd/{{id}}/" class="trådlenke">
+										<h3 class="navn">{{navn}}</h3>
+										<p class="innhold">{{ikkemarkdown innhold}}</p>
+									</a>
+								</div>
+								<p class="underdel">
+									<span>Av: <a href="/bruker/{{bruker.navn}}/" class="bruker">{{bruker.navn}}</a></span>
+									<span class="dato" title="{{dato.[1]}}">{{dato.[0]}}</span>
+								</p>
+							</div>
+							<div class="antall">
+								<p class="tekst">Kommentarer</p>
+								<p class="nummer">{{antallKommentarer}}</p>
+							</div>
+						</div>
+					</li>
+				{{/each}}
+				</ol>
+			</div>
+		</div>
+		<div class="forumListe hoyre">
+			<h2>Siste kommentarer</h2>
+			{{> partialForumSisteKommentarer }}
+		</div>
+	</div>
+</div>

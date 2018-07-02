@@ -1,0 +1,28 @@
+{{#if kategoriNavn}}
+	<h1>{{kategoriNavn}}</h1>
+	<h2>Innhold</h2>
+	<ul class="innhold">
+	{{#each tekster}}
+		<li>
+			<h4><a href="#tekst{{id}}">{{navn}}</a></h4>
+		</li>
+	{{/each}}
+	</ul>
+			
+	<hr>
+
+	{{#each tekster}}
+		<a class="anchor" id="tekst{{id}}"></a>
+		<h2>{{navn}}</h2>
+		<p>{{{innhold}}}</p>
+	{{/each}}
+{{else}}
+	<h1>Vindturbinismens hellige tekster</h1>
+	<p>Her kan du lese alle de hellige tektsene!</p> 
+	<p>Velg en kategori fra menyen til venstre</p>
+
+	<hr>
+
+	<h2>Bok</h2>
+	<p></p>
+{{/if}}

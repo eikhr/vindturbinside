@@ -1,0 +1,219 @@
+﻿/* fjern padding og margin fra body */
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    /* sett musepekeren til en vindturbin */
+    cursor: url("/media/layout/cursor.png"), default;
+}
+
+/* bakgrunn og hovedfont */
+body {
+    background-color: #404E6F;
+    font-family: 'Rubik', sans-serif;;
+}
+
+/* stil for hoveddiven */
+.hoved {
+    padding-top: 40px;
+    min-height: 100%;
+    box-sizing: border-box;
+    color: white;
+    text-align: center;
+    overflow: auto;
+    padding-bottom: 30vh;
+}
+
+/* stil for diven som blir brukt rundt innholdet */
+.innediv{
+    background-color: rgba(0,0,0,0.5);
+    max-width: 500px;
+    margin: 50px auto 10px auto;
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+}
+.innediv>h1 {
+    padding-top: 10px;
+    margin-top: 10px;
+}
+.innediv.feil {
+    background-color: rgba(150,0,0,0.7);
+    padding: 20px; 
+}
+
+.feilmelding {
+    background-color: rgba(200,0,0,0.7);
+    padding: 20px; 
+}
+
+
+/* stil for overskrifter */
+h1, h2 {
+    font-family: 'Bowlby One SC', cursive;
+}
+
+h1{
+    font-size: 40px;
+    color: orangered;
+    text-align: center;
+}
+
+/* stil for avsnitt og linker */
+p{
+    font-size: 16px;
+}
+
+a{
+    color: #FFFFFF;
+}
+
+a:hover {
+    color: #FFFFFF;
+}
+
+/* separeringslinje */
+hr {
+    border-color: rgba(255, 255, 255, 0.2);
+    border-bottom: 1px;
+}
+
+
+/* class for å sentrere innhold (<center> er tydeligvis ikke støttet i nyeste versjon av HTML) */
+.center {
+    text-align: center;
+}
+
+.brukerBilde {
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.brukernavn {
+    display: inline-flex;
+    align-items: center;
+}
+h1.brukernavn {
+    display: flex;
+    justify-content: center;
+}
+
+/* stil for input elementer */
+
+input[type='text'], input[type='password'] {
+    box-sizing: border-box;
+    min-width: 90%;
+    padding: 10px;
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    margin: 2px;
+    margin-bottom: 10px;
+
+}
+
+input[type='submit'], input[type='button'], button {
+    -webkit-appearance: none;
+    line-height: 30px;
+    padding: 0 10px;
+    margin: 5px;
+    border: 0;
+    border-radius: 5px;
+}
+
+input[type='submit']:hover, input[type='button']:hover, button:hover {
+    background-color: #BBBBBB;
+}
+
+input.overskrift {
+    line-height: 40px;
+    font-size: 20px;
+}
+
+select {
+    box-sizing: border-box;
+    max-width: 70%;
+    padding: 10px;
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+textarea {
+    box-sizing: border-box;
+    min-width: 90%;
+    padding: 10px;
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    margin: 2px;
+    height: 200px;
+}
+
+
+/* stil for footer */
+.footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    background-color: white;
+    line-height: 1.5em;
+    height: 1.5em;
+    margin-top: -1.5em;
+}
+
+/* stil for advarsel om informasjonskapsler */
+.informasjonskapsler {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 50px;
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    padding-left: 20px;
+    background-color: #CCAA00;
+}
+.informasjonskapsler input {
+    float: right;
+    margin: 10px;
+}
+
+/* css for bakgrunnsvideoen */
+video#video-background { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: none;
+    background: url() no-repeat;
+    background-size: cover;
+}
+
+/* fikser ankere så de virker med navigasjonsbaren på toppen (når du linker til en del av siden sånn at den scroller for deg) */
+a.anchor {
+    display: block;
+    position: relative;
+    top: -100px;
+    visibility: hidden;
+}
+
+
+/* klasse for tekst som ikke skal kunne markeres */
+.noselect {
+    -webkit-user-select: none; /* Safari */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}

@@ -1,0 +1,20 @@
+.brukerinfo {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+
+	align-items: center;
+}
+
+.brukerinfo>div {
+	background-color: black;
+	border-radius: 5px;
+	margin: 10px;
+	padding: 5px;
+}
+.brukerinfo>div .tall {
+	font-size: 30px;
+}
+.brukerinfo>div>p:nth-child(1) {
+	font-weight: bold;
+}
