@@ -1,0 +1,2 @@
+# vindturbinside
+Nettsiden til vindturbinismen
