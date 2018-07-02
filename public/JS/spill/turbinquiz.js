@@ -110,8 +110,8 @@ function finnPoeng(evt){
 
 	for(var n = 0; n < alleCheckboxEl.length; n++){
 		if(alleCheckboxEl[n].value == 'Riktig'){
-			document.querySelectorAll('.alt')[n].style.color = 'limegreen';
-			document.querySelectorAll('.alt')[n].style.fontWeight = 'bold';
+			document.querySelectorAll('.alt')[n-1].style.color = 'limegreen';
+			document.querySelectorAll('.alt')[n-1].style.fontWeight = 'bold';
 		}
 	}
 }
