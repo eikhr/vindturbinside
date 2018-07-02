@@ -35,7 +35,7 @@ ruter.get('/', asyncMiddleware(async (req, res, next) => {
 									}
 								</style>`;
 	req.hbsdata.tittel = 'Spill og quiz - Vindturbinismen';
-	req.hbsdata.js += '<script src="/js/spill/turbinquiz.js"></script>';
+	req.hbsdata.js += '<script src="/JS/spill/turbinquiz.js"></script>';
 
 	lagSide(res, 'spill', req.hbsdata, next);
 }));
