@@ -23,7 +23,7 @@ module.exports = con => {
 					alder: formaterDato(resultat[0]['OpprettetDato'], 'alder'),
 					poeng: resultat[0]['Poeng'],
 					admin: resultat[0]['Admin'],
-					bilde: 'https://vindturbin.s3.amazonaws.com/' + resultat[0]['Filnavn']
+					bilde: 'https://vindturbin.s3.amazonaws.com/pb/' + resultat[0]['Filnavn']
 				};
 			} else {
 				throw 'Brukeren finnes ikke';

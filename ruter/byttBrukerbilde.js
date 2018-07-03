@@ -57,7 +57,7 @@ module.exports = (db) => {
 				.toBuffer()
 				.then(async (data) => {
 					let s3upload = uploadToS3({
-						name: filnavn,
+						name: 'pb/' + filnavn,
 						data: data
 					});
 
@@ -67,7 +67,7 @@ module.exports = (db) => {
 					let gammeltBildeNavn = await db.bruker.byttBilde(req.session.bruker.id, bildeID);
 
 					await s3upload;
-					let s3del = deleteFromS3(gammeltBildeNavn);
+					let s3del = deleteFromS3('pb/' + gammeltBildeNavn);
 
 
 					req.session.bruker = await db.bruker.hentBruker(Number(req.session.bruker.id));

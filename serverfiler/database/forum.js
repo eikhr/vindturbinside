@@ -15,7 +15,7 @@ module.exports = con => {
 					url: encodeURI(rad.navn.replace(/ /g, '_')),
 					beskrivelse: rad.beskrivelse,
 					antallTraader: rad.antallEmner,
-					bilde: 'https://vindturbin.s3.amazonaws.com/' + rad.filnavn
+					bilde: 'https://vindturbin.s3.amazonaws.com/pb/' + rad.filnavn
 				});
 			}
 
@@ -39,7 +39,7 @@ module.exports = con => {
 					antallKommentarer: rad.antallInnlegg - 1,
 					bruker: {
 						navn: rad.brukernavn,
-						bilde: 'https://vindturbin.s3.amazonaws.com/' + rad.brukerbilde,
+						bilde: 'https://vindturbin.s3.amazonaws.com/pb/' + rad.brukerbilde,
 						admin: rad.brukeradmin
 					}
 				});
@@ -70,7 +70,7 @@ module.exports = con => {
 					dato: formaterDato(rad.dato, 'vanlig'),
 					bruker: {
 						navn: rad.brukernavn,
-						bilde: 'https://vindturbin.s3.amazonaws.com/' + rad.bilde
+						bilde: 'https://vindturbin.s3.amazonaws.com/pb/' + rad.bilde
 					}
 				});
 			}
@@ -108,7 +108,7 @@ module.exports = con => {
 					endretDato: (rad.opprettetDato === rad.endretDato)? formaterDato(rad.endretDato, 'vanlig'): false,
 					bruker: {
 						navn: rad.brukernavn,
-						bilde: 'https://vindturbin.s3.amazonaws.com/' + rad.brukerbilde
+						bilde: 'https://vindturbin.s3.amazonaws.com/pb/' + rad.brukerbilde
 					}
 				});
 			}
