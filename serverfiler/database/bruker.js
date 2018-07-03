@@ -23,7 +23,7 @@ module.exports = con => {
 					alder: formaterDato(resultat[0]['OpprettetDato'], 'alder'),
 					poeng: resultat[0]['Poeng'],
 					admin: resultat[0]['Admin'],
-					bilde: '/media/bilde/' + resultat[0]['Filnavn']
+					bilde: 'https://vindturbin.s3.amazonaws.com/' + resultat[0]['Filnavn']
 				};
 			} else {
 				throw 'Brukeren finnes ikke';
@@ -43,9 +43,11 @@ module.exports = con => {
 		},
 
 		byttBilde: async (brukerID, bildeID) => {
+			let gammeltBilde = await dbquery('SELECT bilde.Filnavn AS filnavn FROM bruker INNER JOIN bilde ON bruker.BildeID = bilde.BildeID WHERE bruker.BrukerID = ?', [brukerID]);
+
 			await dbquery('UPDATE bruker SET BildeID = ? WHERE BrukerID = ?', [bildeID, brukerID]);
 
-			return;
+			return gammeltBilde[0]['filnavn'];
 		},
 
 		hentHusketLogin: async (id) => {
