@@ -72,8 +72,6 @@ module.exports = (db) => {
 
 					req.session.bruker = await db.bruker.hentBruker(Number(req.session.bruker.id));
 
-					await s3del;
-
 					res.redirect(303, '/');
 
 					//fs.unlink('./uploadTmp/' + file.name, (err) => { console.log(err); });
