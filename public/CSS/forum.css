@@ -7,8 +7,12 @@
 }
 .markdown img {
     max-height: 400px;
+    max-width: 100%;
 }
 
+.rentekst {
+    font-family: 'IBM Plex Mono', monospace;
+}
 
 
 .sti {
@@ -69,10 +73,12 @@
 .forumListe .listeObj .antall>.tekst {
     color: #DDDDDD;
     font-size: 14px;
+    margin: 0;
 }
 .forumListe .listeObj .antall>.nummer {
     color: #FFFFFF;
     font-size: 26px;
+    margin: 0;
 }
 
 
@@ -113,7 +119,7 @@
     font-weight: bold;
     margin: 0;
 }
-.forumListe p {
+.forumListe .underdel, .forumListe .innhold, .forumListe .beskrivelse {
     margin: 0;
 }
 

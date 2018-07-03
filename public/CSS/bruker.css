@@ -5,6 +5,9 @@
 
 	align-items: center;
 }
+.brukerinfo p {
+	margin: 0;
+}
 
 .brukerinfo>div {
 	background-color: black;

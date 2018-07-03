@@ -18,3 +18,23 @@ if (nyKategoriEl) {
 		hoveddel.querySelector('input').focus();
 	}, { once: true });
 }
+
+var renTekstKnapper = document.querySelectorAll('button.rentekst');
+
+for (var i = 0; i < renTekstKnapper.length; i++) {
+	renTekstKnapper[i].addEventListener("click", function() {
+		renTekstKlikk(this);
+	});
+}
+
+function renTekstKlikk(knapp) {
+	if (knapp.parentNode.parentNode.querySelector('.tekst.rentekst').getAttribute('hidden')) {
+		knapp.parentNode.parentNode.querySelector('.tekst.rentekst').removeAttribute('hidden');
+		knapp.parentNode.parentNode.querySelector('.tekst.markdown').setAttribute('hidden', 'hidden');
+		knapp.innerHTML = 'Vis markdown';
+	} else {
+		knapp.parentNode.parentNode.querySelector('.tekst.rentekst').setAttribute('hidden', 'hidden');
+		knapp.parentNode.parentNode.querySelector('.tekst.markdown').removeAttribute('hidden');
+		knapp.innerHTML = 'Vis ren tekst';
+	}
+}

@@ -27,14 +27,20 @@
 							<div class="tekst markdown">
 								{{markdown innhold}}
 							</div>
+							<div class="tekst rentekst" hidden='hidden'>
+								{{nl2br innhold}}
+							</div>
 							<div class="toolbar">
+								<button class="rentekst" value="{{id}}">Vis ren tekst</button>
+								{{!--
 								{{#if ../bruker}}
 									{{#if innloggetBruker}}
 										<button>Rediger</button>
 										<button>Slett</button>
-									{{/if}} 
+									{{/if}}
 									<button>Lik</button>
 								{{/if}}
+								--}}
 							</div>
 						</div>
 					</div>
