@@ -25,7 +25,7 @@ module.exports = (db) => {
 		db = await db;
 
 		req.hbsdata.tittel = 'Forum - Vindturbinismen';
-		req.hbsdata.js += '<script src="/js/forum.js"></script>';
+		req.hbsdata.js += '<script src="/JS/forum.js"></script>';
 
 		req.hbsdata.kategorier = await db.forum.hentKategorier();
 		req.hbsdata.sisteKommentarer = await db.forum.hentSisteKommentarer(5);
