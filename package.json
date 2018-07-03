@@ -4,6 +4,7 @@
   "description": "Nettsiden til vindturbinismen",
   "main": "index.js",
   "dependencies": {
+    "aws-sdk": "^2.266.1",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
     "cookie": "^0.3.1",
@@ -21,13 +22,13 @@
     "markdown-it": "^8.4.1",
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
+    "mysql-ssh": "^1.0.6",
     "npm": "^6.0.1",
     "remove-markdown": "^0.2.2",
     "serve-favicon": "^2.5.0",
     "sharp": "^0.20.2"
   },
   "devDependencies": {
-    "mysql-ssh": "^1.0.6",
     "nodemon": "^1.17.4"
   },
   "scripts": {
