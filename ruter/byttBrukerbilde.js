@@ -49,10 +49,10 @@ module.exports = (db) => {
 		form.on('file', async function (name, file){
 			let tid = Math.round(Date.now()/1000);
 			let filnavn = req.session.bruker.navn + '_' + tid + '_pb.png';
-
+			console.log('1');
 			let readable = await new Promise((resolve, reject) => {
 				fs.access('./uploadTmp/' + file.name, fs.constants.R_OK, (err) => {
-					console.log(err);
+					console.log('Err: ' + err);
 			  		resolve(!Boolean(err));
 				});
 			});
