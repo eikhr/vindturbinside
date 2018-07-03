@@ -34,7 +34,6 @@ module.exports = (db) => {
 
 		form.parse(req, err => {
 			if (err) {
-				console.log(err.message.substring(0, 20));
 				if (err.message.substring(0, 20) === 'maxFileSize exceeded') {
 					leggTilSessionFeil(req, 'Bildet er for stort, vennligst bruk et bilde som er mindre enn 5 MB.');
 				}
@@ -42,18 +41,11 @@ module.exports = (db) => {
 			}
 		})
 
-		form.on('fileBegin', function (name, file){
-			console.log('1');
-			
-		});
-
 		form.on('file', async function (name, file){
 			let tid = Math.round(Date.now()/1000);
 			let filnavn = req.session.bruker.navn + '_' + tid + '_pb.png';
-			console.log('2' + this.openedFiles[0].path);
 			let readable = await new Promise((resolve, reject) => {
 				fs.access(this.openedFiles[0].path, fs.constants.R_OK, (err) => {
-					console.log('Err: ' + err);
 			  		resolve(!Boolean(err));
 				});
 			});
