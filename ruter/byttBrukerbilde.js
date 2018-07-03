@@ -46,45 +46,57 @@ module.exports = (db) => {
 			file.path = './uploadTmp/' + file.name;
 		});
 
-		form.on('file', function (name, file){
+		form.on('file', async function (name, file){
 			let tid = Math.round(Date.now()/1000);
 			let filnavn = req.session.bruker.navn + '_' + tid + '_pb.png';
 
-			sharp('./uploadTmp/' + file.name)
-				.resize(200, 200)
-				.background('white')
-				.png()
-				.toBuffer()
-				.then(async (data) => {
-					let s3upload = uploadToS3({
-						name: 'pb/' + filnavn,
-						data: data
-					});
-
-
-					let bildeID = await db.bilde.leggTilBilde(filnavn, req.session.bruker.id);
-
-					let gammeltBildeNavn = await db.bruker.byttBilde(req.session.bruker.id, bildeID);
-
-					await s3upload;
-					let s3del = deleteFromS3('pb/' + gammeltBildeNavn);
-
-
-					req.session.bruker = await db.bruker.hentBruker(Number(req.session.bruker.id));
-
-					res.redirect(303, '/');
-
-					//fs.unlink('./uploadTmp/' + file.name, (err) => { console.log(err); });
-				})
-				.catch(err => {
-					console.log(err.message);
-					if (err.message === 'Input file is missing or of an unsupported image format') {
-						leggTilSessionFeil(req, 'Filtypen du lastet opp er ikke støttet.');
-					} else {
-						console.log(err);
-					}
-					res.redirect('back');
+			let readable = await new Promise((resolve, reject) => {
+				fs.access('./uploadTmp/' + file.name, fs.constants.R_OK, (err) => {
+					console.log(err);
+			  		resolve(!Boolean(err));
 				});
+			});
+
+			if (readable) {
+				sharp('./uploadTmp/' + file.name)
+					.resize(200, 200)
+					.background('white')
+					.png()
+					.toBuffer()
+					.then(async (data) => {
+						let s3upload = uploadToS3({
+							name: 'pb/' + filnavn,
+							data: data
+						});
+
+
+						let bildeID = await db.bilde.leggTilBilde(filnavn, req.session.bruker.id);
+
+						let gammeltBildeNavn = await db.bruker.byttBilde(req.session.bruker.id, bildeID);
+
+						await s3upload;
+						let s3del = deleteFromS3('pb/' + gammeltBildeNavn);
+
+
+						req.session.bruker = await db.bruker.hentBruker(Number(req.session.bruker.id));
+
+						res.redirect(303, '/');
+
+						//fs.unlink('./uploadTmp/' + file.name, (err) => { console.log(err); });
+					})
+					.catch(err => {
+						console.log(err.message);
+						if (err.message === 'Input file is missing or of an unsupported image format') {
+							leggTilSessionFeil(req, 'Filtypen du lastet opp er ikke støttet.');
+						} else {
+							console.log(err);
+						}
+						res.redirect('back');
+					});
+			} else {
+				leggTilSessionFeil(req, 'Det oppstod en feil, prøv igjen senere.');
+				res.redirect('back');
+			}
 		});
 	}));
 
