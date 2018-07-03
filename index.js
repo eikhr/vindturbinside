@@ -43,7 +43,7 @@ app.set('view engine', 'hbs');
 
 // definerer funksjoner som blir brukt når noen spør etter en side
 app.use(favicon(path.join(__dirname, 'public', 'media', 'favicon.ico')));
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
