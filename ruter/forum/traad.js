@@ -21,7 +21,7 @@ module.exports = (db) => {
 			throw err;
 		}
 
-		req.hbsdata.js += '<script src="/js/forum.js"></script>';
+		req.hbsdata.js += '<script src="/JS/forum.js"></script>';
 		req.hbsdata.tittel = 'Forum - Vindturbinismen';
 
 		let emneData = await db.forum.hentEmneData(emneID);
