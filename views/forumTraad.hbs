@@ -30,17 +30,22 @@
 							<div class="tekst rentekst" hidden='hidden'>
 								{{nl2br innhold}}
 							</div>
+							<div class="likerklikk">
+								<div class="tooltip likerklikktekst" data-id="{{id}}"><span class="num">{{likerklikk}}</span> liker dette
+									<span class="likernavn tooltiptext tooltip-top">Dette krever javascript</span>
+								</div>
+							</div>
 							<div class="toolbar">
-								<button class="rentekst" value="{{id}}">Vis ren tekst</button>
-								{{!--
+								<button class="rentekst">Vis ren tekst</button>
 								{{#if ../bruker}}
+									{{!--
 									{{#if innloggetBruker}}
 										<button>Rediger</button>
 										<button>Slett</button>
 									{{/if}}
-									<button>Lik</button>
+									--}}
+									<button class="likInnlegg" value="{{id}}">{{#if likt}}Slutt å like{{else}}Lik{{/if}}</button>
 								{{/if}}
-								--}}
 							</div>
 						</div>
 					</div>

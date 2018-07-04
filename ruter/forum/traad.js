@@ -29,7 +29,11 @@ module.exports = (db) => {
 		req.hbsdata.kategori = emneData.kategori;
 		req.hbsdata.emne = emneData.emne;
 		req.hbsdata.id = emneData.id;
-		req.hbsdata.innlegg = await db.forum.hentInnlegg(emneID);
+		if (req.session.bruker) {
+			req.hbsdata.innlegg = await db.forum.hentInnlegg(emneID, req.session.bruker.id);
+		} else {
+			req.hbsdata.innlegg = await db.forum.hentInnlegg(emneID);
+		}
 
 		if (req.session.bruker) {
 			for (let innlegg of req.hbsdata.innlegg) {

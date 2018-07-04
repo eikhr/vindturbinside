@@ -5,6 +5,9 @@
 .markdown h1 {
     color: white;
 }
+.markdown p {
+    margin-bottom: 0;
+}
 .markdown img {
     max-height: 400px;
     max-width: 100%;
@@ -217,8 +220,13 @@
     flex-direction: column;
     justify-content: space-between;
 }
+.forumListe .kommentar .hoveddel>.likerklikk {
+    text-align: right;
+    margin: 0;
+}
 .forumListe .kommentar .hoveddel .tekst {
     line-height: 22px;
+    margin-bottom: 0;
 }
 .forumListe .kommentar .hoveddel .tekst a {
     text-decoration: underline;

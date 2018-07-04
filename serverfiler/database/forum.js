@@ -96,21 +96,78 @@ module.exports = con => {
 			};
 		},
 
-		hentInnlegg: async (emneID) => {
-			let resultat = await dbquery('SELECT fi.ForumInnleggID AS id, fi.Innhold AS innhold, fi.OpprettetDato AS opprettetDato, fi.EndretDato AS endretDato, br.Navn as brukernavn, bi.Filnavn as brukerbilde FROM foruminnlegg AS fi INNER JOIN bruker AS br ON br.BrukerID=fi.BrukerID INNER JOIN bilde AS bi ON bi.BildeID=br.BildeID WHERE fi.ForumEmneID = ?', [emneID]);
+		finnesInnlegg: async (innleggID) => {
+			let resultat = await dbquery('SELECT COUNT(*) FROM foruminnlegg WHERE ForumInnleggID = ?', [innleggID]);
 
-			let innlegg = [];
+			return Boolean(resultat[0]['COUNT(*)']);
+		},
+
+		harLikt: async (brukerID, innleggID) => {
+			let resultat = await dbquery('SELECT COUNT(*) FROM liktinnlegg WHERE ForumInnleggID = ? AND BrukerID = ?', [innleggID, brukerID]);
+
+			return Boolean(resultat[0]['COUNT(*)']);
+		},
+
+		likInnlegg: async (brukerID, innleggID) => {
+			let resultat = await dbquery('INSERT INTO liktinnlegg(ForumInnleggID, BrukerID) VALUES (?, ?)', [innleggID, brukerID]);
+
+			return resultat.insertId;
+		},
+
+		sluttLikInnlegg: async (brukerID, innleggID) => {
+			let resultat = await dbquery('DELETE FROM liktinnlegg WHERE ForumInnleggID = ? AND BrukerID = ?', [innleggID, brukerID]);
+
+			return;
+		},
+
+		hentLikerNavn: async (innleggID) => {
+			let resultat = await dbquery('SELECT br.Navn AS brukernavn FROM liktinnlegg AS li INNER JOIN bruker AS br ON li.BrukerID = br.BrukerID WHERE li.ForumInnleggID = ?', [innleggID]);
+
+			let likerklikk = [];
+
 			for (const rad of resultat) {
-				innlegg.push({
-					id: rad.id,
-					innhold: rad.innhold,
-					opprettetDato: formaterDato(rad.opprettetDato, 'vanlig'),
-					endretDato: (rad.opprettetDato === rad.endretDato)? formaterDato(rad.endretDato, 'vanlig'): false,
-					bruker: {
-						navn: rad.brukernavn,
-						bilde: 'https://vindturbin.s3.amazonaws.com/pb/' + rad.brukerbilde
-					}
-				});
+				likerklikk.push(rad.brukernavn);
+			}
+
+			return likerklikk;
+		},
+
+		hentInnlegg: async (emneID, innloggetBrukerID) => {
+			if (innloggetBrukerID) {
+				let resultat = await dbquery('SELECT fi.ForumInnleggID AS id, fi.Innhold AS innhold, fi.OpprettetDato AS opprettetDato, fi.EndretDato AS endretDato, br.Navn as brukernavn, bi.Filnavn as brukerbilde, (SELECT COUNT(*) FROM liktinnlegg WHERE liktinnlegg.ForumInnleggID = fi.ForumInnleggID) AS likerklikk, (SELECT COUNT(*) FROM liktinnlegg WHERE liktinnlegg.ForumInnleggID = fi.ForumInnleggID AND liktinnlegg.BrukerID = ?) as likt FROM foruminnlegg AS fi INNER JOIN bruker AS br ON br.BrukerID=fi.BrukerID INNER JOIN bilde AS bi ON bi.BildeID=br.BildeID WHERE fi.ForumEmneID = ?', [innloggetBrukerID, emneID]);
+				
+				var innlegg = [];
+				for (const rad of resultat) {
+					innlegg.push({
+						id: rad.id,
+						innhold: rad.innhold,
+						opprettetDato: formaterDato(rad.opprettetDato, 'vanlig'),
+						endretDato: (rad.opprettetDato === rad.endretDato)? formaterDato(rad.endretDato, 'vanlig'): false,
+						bruker: {
+							navn: rad.brukernavn,
+							bilde: 'https://vindturbin.s3.amazonaws.com/pb/' + rad.brukerbilde
+						},
+						likerklikk: rad.likerklikk,
+						likt: rad.likt
+					});
+				}
+			} else {
+				let resultat = await dbquery('SELECT fi.ForumInnleggID AS id, fi.Innhold AS innhold, fi.OpprettetDato AS opprettetDato, fi.EndretDato AS endretDato, br.Navn as brukernavn, bi.Filnavn as brukerbilde, (SELECT COUNT(*) FROM liktinnlegg WHERE liktinnlegg.ForumInnleggID = fi.ForumInnleggID) AS likerklikk FROM foruminnlegg AS fi INNER JOIN bruker AS br ON br.BrukerID=fi.BrukerID INNER JOIN bilde AS bi ON bi.BildeID=br.BildeID WHERE fi.ForumEmneID = ?', [emneID]);
+
+				var innlegg = [];
+				for (const rad of resultat) {
+					innlegg.push({
+						id: rad.id,
+						innhold: rad.innhold,
+						opprettetDato: formaterDato(rad.opprettetDato, 'vanlig'),
+						endretDato: (rad.opprettetDato === rad.endretDato)? formaterDato(rad.endretDato, 'vanlig'): false,
+						bruker: {
+							navn: rad.brukernavn,
+							bilde: 'https://vindturbin.s3.amazonaws.com/pb/' + rad.brukerbilde
+						},
+						likerklikk: rad.likerklikk
+					});
+				}
 			}
 
 			return innlegg;

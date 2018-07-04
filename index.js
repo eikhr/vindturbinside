@@ -26,6 +26,7 @@ const lagSide = require('./serverfiler/lagSide');
 
 
 // inkluderer sider/ruter
+const ajax  = require('./ruter/ajax.js')(db);
 const forside = require('./ruter/forside.js');
 const tekster = require('./ruter/tekster.js')(db);
 const spill = require('./ruter/spill.js');
@@ -43,7 +44,7 @@ app.set('view engine', 'hbs');
 
 // definerer funksjoner som blir brukt når noen spør etter en side
 app.use(favicon(path.join(__dirname, 'public', 'media', 'favicon.ico')));
-//app.use(logger('dev'));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -67,6 +68,8 @@ app.use(sjekkCookieVarsel);
 
 
 // definerer rutene til de ulike sidene
+app.use('/AJAX', ajax);
+
 app.use('/', forside);
 app.use('/tekster', tekster);
 app.use('/spill', spill);
@@ -86,7 +89,7 @@ app.use(function(req, res, next) {
 });
 
 // feilbehandler
-app.use(function(err, req, res) {
+app.use(function(err, req, res, next) {
 	// set locals, only providing error in development
 	console.error(err);
 	res.locals.message = err.message;
