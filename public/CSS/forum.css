@@ -82,11 +82,12 @@
     color: #FFFFFF;
     font-size: 26px;
     margin: 0;
+}
+.forumListe .tråd .listeObj .antall>.nummer {
     position: relative;
     top: -42px;
     left: 2px;
 }
-
 
 
 .forumListe>h2 {
