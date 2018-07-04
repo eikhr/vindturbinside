@@ -9,7 +9,7 @@ module.exports = (db) => {
 	ruter.get('/', asyncMiddleware(async (req, res, next) => {
 		req.hbsdata.tittel = 'Tilbakestill passord - Vindturbinismen';
 
-		lagSide(res, 'resetPassord', req.hbsdata, next);
+		lagSide(req, res, 'resetPassord', req.hbsdata, next);
 	}));
 
 	ruter.post('/', asyncMiddleware(async (req, res, next) => {

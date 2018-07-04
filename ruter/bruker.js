@@ -32,7 +32,7 @@ module.exports = (db) => {
 
 		req.hbsdata.tittel = req.hbsdata.omBruker.navn + ' - Vindturbinismen';
 		
-		lagSide(res, 'bruker', req.hbsdata, next);
+		lagSide(req, res, 'bruker', req.hbsdata, next);
 	}));
 	return ruter;
 };

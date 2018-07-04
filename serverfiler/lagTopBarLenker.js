@@ -1,21 +1,21 @@
-module.exports = (aktiv) => {
+module.exports = function (aktiv) {
 	let lenker = [
 		{
 			url: '/tekster/',
 			navn: 'Tekster'
 		},{
 			url: '/spill/',
-			navn: 'Quiz og spill'
+			navn: 'Quiz'
 		},{
 			url: '/forum/',
 			navn: 'Forum'
 		},{
 			url: '/videoer/',
 			navn: 'Videoer'
-		},{
+		}/*,{
 			url: '/lær/',
 			navn: 'Lær'
-		}
+		}*/
 	];
 	switch (aktiv) {
 		case 'tekster':
@@ -29,10 +29,10 @@ module.exports = (aktiv) => {
 			break;
 		case 'videoer':
 			lenker[3].aktiv = true;
-			break;
+			break;/*
 		case 'lær':
 			lenker[4].aktiv = true;
-			break;
+			break;*/
 	}
 
 	return lenker;

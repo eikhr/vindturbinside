@@ -7,6 +7,8 @@ const ruter = express.Router();
 
 
 ruter.get('/', asyncMiddleware(async (req, res, next) => {
+	req.aktivSide = 'videoer';
+
 	req.hbsdata.headLenker += `	<style>
 									iframe {
 										background-color: black;
@@ -20,7 +22,7 @@ ruter.get('/', asyncMiddleware(async (req, res, next) => {
 								</style>`;
 	req.hbsdata.tittel = 'Videoer - Vindturbinismen';
 	
-	lagSide(res, 'videoer', req.hbsdata, next);
+	lagSide(req, res, 'videoer', req.hbsdata, next);
 }));
 
 module.exports = ruter;

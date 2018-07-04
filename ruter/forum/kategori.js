@@ -29,7 +29,7 @@ module.exports = (db) => {
 		req.hbsdata.traader = await db.forum.hentTraader(kategori);
 		req.hbsdata.sisteKommentarer = await db.forum.hentSisteKommentarer(5, kategori);
 
-		lagSide(res, 'forumKategori', req.hbsdata, next);
+		lagSide(req, res, 'forumKategori', req.hbsdata, next);
 	}));
 
 	return ruter;

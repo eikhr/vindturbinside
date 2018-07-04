@@ -1,6 +1,6 @@
 const lagLenker = require('./lagTopBarLenker.js');
 
-module.exports = (res, side, data, next) => {
+module.exports = (req, res, side, data, next) => {
 	res.render(side, data, (err, html) => {
 		if(err) {
 			if (next) {
@@ -10,7 +10,7 @@ module.exports = (res, side, data, next) => {
 			}
 		} else {
 			data.hoveddel = html;
-			data.topBarLenker = lagLenker();
+			data.topBarLenker = lagLenker(req.aktivSide);
 			res.render('base', data);
 		}
 	});

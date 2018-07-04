@@ -16,7 +16,7 @@ module.exports = (db) => {
 	ruter.get('/', asyncMiddleware(async (req, res, next) => {
 		if (req.query.quiz === 'fullført') {
 			req.hbsdata.tittel = 'Lag Bruker - Vindturbinismen';
-			lagSide(res, 'registrerBruker', req.hbsdata, next);
+			lagSide(req, res, 'registrerBruker', req.hbsdata, next);
 		} else {
 			req.hbsdata.headLenker += `	<style>
 											#idBilde {
@@ -42,7 +42,7 @@ module.exports = (db) => {
 			req.hbsdata.tittel = 'Opptaksquiz - Vindturbinismen';
 			req.hbsdata.js += '<script src="/JS/opptaksquiz.js"></script>';
 
-			lagSide(res, 'opptaksquiz', req.hbsdata, next);
+			lagSide(req, res, 'opptaksquiz', req.hbsdata, next);
 		}
 	}));
 

@@ -28,7 +28,7 @@ module.exports = (db) => {
 		req.hbsdata.tittel = 'Ny tråd - Forum - Vindturbinismen';
 		req.hbsdata.kategori = kategori;
 
-		lagSide(res, 'nyTraad', req.hbsdata, next);
+		lagSide(req, res, 'nyTraad', req.hbsdata, next);
 	}));
 
 

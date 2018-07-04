@@ -43,7 +43,7 @@ module.exports = (db) => {
 			}
 		}
 
-		lagSide(res, 'forumTraad', req.hbsdata, next);
+		lagSide(req, res, 'forumTraad', req.hbsdata, next);
 	}));
 
 

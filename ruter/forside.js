@@ -10,7 +10,7 @@ ruter.get('/', asyncMiddleware(async (req, res, next) => {
 	req.hbsdata.headLenker += '<link rel="stylesheet" href="/CSS/hovedside.css">';
 	req.hbsdata.tittel = 'Vindturbinismen';
 
-	lagSide(res, 'forside', req.hbsdata, next);
+	lagSide(req, res, 'forside', req.hbsdata, next);
 }));
 
 module.exports = ruter;

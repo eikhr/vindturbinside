@@ -7,6 +7,8 @@ const ruter = express.Router();
 
 
 ruter.get('/', asyncMiddleware(async (req, res, next) => {
+	req.aktivSide = 'spill';
+
 	req.hbsdata.headLenker += `	<style>
 									body {
 										background-color: white;
@@ -37,7 +39,7 @@ ruter.get('/', asyncMiddleware(async (req, res, next) => {
 	req.hbsdata.tittel = 'Spill og quiz - Vindturbinismen';
 	req.hbsdata.js += '<script src="/JS/spill/turbinquiz.js"></script>';
 
-	lagSide(res, 'spill', req.hbsdata, next);
+	lagSide(req, res, 'spill', req.hbsdata, next);
 }));
 
 module.exports = ruter;

@@ -19,7 +19,7 @@ module.exports = (db) => {
 	ruter.get('/', asyncMiddleware(async (req, res, next) => {
 		req.hbsdata.tittel = 'Bytt brukerbilde - Vindturbinismen';
 		
-		lagSide(res, 'byttBrukerbilde', req.hbsdata, next);
+		lagSide(req, res, 'byttBrukerbilde', req.hbsdata, next);
 	}));
 
 	ruter.post('/', asyncMiddleware(async (req, res, next) => {

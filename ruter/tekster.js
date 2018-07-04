@@ -7,6 +7,8 @@ module.exports = (db) => {
 	const ruter = express.Router();
 
 	ruter.get('*', asyncMiddleware(async (req, res, next) => {
+		req.aktivSide = 'tekster';
+
 		db = await db;
 		let visesKategori, kategoriNavn, kategoriID;
 
@@ -55,7 +57,7 @@ module.exports = (db) => {
 			tekster: tekster
 		};
 		
-		lagSide(res, 'tekster', req.hbsdata, next);
+		lagSide(req, res, 'tekster', req.hbsdata, next);
 	}));
 
 	return ruter;

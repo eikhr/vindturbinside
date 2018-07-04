@@ -12,6 +12,7 @@ module.exports = (db) => {
 	const ruter = express.Router();
 	
 	ruter.use('/', (req, res, next) => {
+		req.aktivSide = 'forum';
 		req.hbsdata.headLenker += '<link rel="stylesheet" href="/CSS/forum.css">';
 		next();
 	});
@@ -30,7 +31,7 @@ module.exports = (db) => {
 		req.hbsdata.kategorier = await db.forum.hentKategorier();
 		req.hbsdata.sisteKommentarer = await db.forum.hentSisteKommentarer(5);
 
-		lagSide(res, 'forumHjem', req.hbsdata, next);
+		lagSide(req, res, 'forumHjem', req.hbsdata, next);
 	}));
 
 	ruter.post('/', asyncMiddleware(async (req, res, next) => {
