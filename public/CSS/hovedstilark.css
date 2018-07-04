@@ -198,6 +198,8 @@ video#video-background {
     background: none;
     background: url() no-repeat;
     background-size: cover;
+
+    filter: blur(5px);
 }
 
 /* fikser ankere så de virker med navigasjonsbaren på toppen (når du linker til en del av siden sånn at den scroller for deg) */

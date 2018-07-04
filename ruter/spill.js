@@ -10,10 +10,6 @@ ruter.get('/', asyncMiddleware(async (req, res, next) => {
 	req.aktivSide = 'spill';
 
 	req.hbsdata.headLenker += `	<style>
-									body {
-										background-color: white;
-									}
-
 									.innediv {
 										text-align: left;
 										max-width: 800px;
