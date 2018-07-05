@@ -44,7 +44,7 @@ app.set('view engine', 'hbs');
 
 // definerer funksjoner som blir brukt når noen spør etter en side
 app.use(favicon(path.join(__dirname, 'public', 'media', 'favicon.ico')));
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -57,7 +57,8 @@ app.use(session({
 
 
 // sender filer fra public som statiske filer
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 86400000 }));
+
 
 // sjekker om brukeren logger inn eller ut
 app.use('*', sjekkLogin);
