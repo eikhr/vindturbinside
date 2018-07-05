@@ -63,6 +63,7 @@ function kjorQuiz(){
 			var nyCheckbox = document.createElement('input');
 			nyCheckbox.type = 'checkbox';
 			nyCheckbox.value = quiz[i].fasit[j];
+			nyCheckbox.classList.add('turbinquizcbox');
 			var nyDiv = document.createElement('label');
 			nyDiv.style = 'display: block;';
 			nyDiv.className = 'alt';
@@ -81,7 +82,7 @@ function kjorQuiz(){
 }
   
 function finnPoeng(evt){
-	var alleCheckboxEl = document.querySelectorAll('input[type="checkbox"]');
+	var alleCheckboxEl = document.querySelectorAll('input[type="checkbox"].turbinquizcbox');
 	var antallPoeng = 0;
 	for (var k=0; k<alleCheckboxEl.length; k++){
 		if(alleCheckboxEl[k].checked) {
@@ -110,8 +111,8 @@ function finnPoeng(evt){
 
 	for(var n = 0; n < alleCheckboxEl.length; n++){
 		if(alleCheckboxEl[n].value == 'Riktig'){
-			document.querySelectorAll('.alt')[n-1].style.color = 'limegreen';
-			document.querySelectorAll('.alt')[n-1].style.fontWeight = 'bold';
+			document.querySelectorAll('.alt')[n].style.color = 'limegreen';
+			document.querySelectorAll('.alt')[n].style.fontWeight = 'bold';
 		}
 	}
 }

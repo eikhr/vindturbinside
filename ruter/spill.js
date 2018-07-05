@@ -31,6 +31,10 @@ ruter.get('/', asyncMiddleware(async (req, res, next) => {
 										background-color: #6495ED;
 										cursor: pointer;
 									}
+
+									label {
+										display: block;
+									}
 								</style>`;
 	req.hbsdata.tittel = 'Spill og quiz - Vindturbinismen';
 	req.hbsdata.js += '<script src="/JS/spill/turbinquiz.js"></script>';
