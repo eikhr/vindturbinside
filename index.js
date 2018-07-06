@@ -99,7 +99,7 @@ app.use(function(err, req, res, next) {
 	// lag feilmeldingsiden
 	res.status(err.status || 500);
 	req.hbsdata.hoveddel = feilmeldingData(err.message);
-	lagSide(res, 'feil', req.hbsdata);
+	lagSide(req, res, 'feil', req.hbsdata);
 });
 
 
