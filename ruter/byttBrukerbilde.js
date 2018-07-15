@@ -68,7 +68,10 @@ module.exports = (db) => {
 						let gammeltBildeNavn = await db.bruker.byttBilde(req.session.bruker.id, bildeID);
 
 						await s3upload;
-						let s3del = deleteFromS3('pb/' + gammeltBildeNavn);
+
+						if (/default\d+\.svg/.test(gammeltBildeNavn)) {
+							deleteFromS3('pb/' + gammeltBildeNavn);
+						}
 
 
 						req.session.bruker = await db.bruker.hentBruker(Number(req.session.bruker.id));
