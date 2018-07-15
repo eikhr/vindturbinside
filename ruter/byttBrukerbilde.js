@@ -69,7 +69,7 @@ module.exports = (db) => {
 
 						await s3upload;
 
-						if (/default\d+\.svg/.test(gammeltBildeNavn)) {
+						if (!/default\d+\.svg/.test(gammeltBildeNavn)) {
 							deleteFromS3('pb/' + gammeltBildeNavn);
 						}
 
