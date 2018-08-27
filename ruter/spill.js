@@ -1,45 +1,31 @@
 const express = require('express');
 const lagSide = require('../serverfiler/lagSide');
-
 const asyncMiddleware = require('../serverfiler/asyncMiddleware.js');
 
-const ruter = express.Router();
+const leggTilSessionFeil = require('../serverfiler/leggTilSessionFeil.js');
 
 
-ruter.get('/', asyncMiddleware(async (req, res, next) => {
-	req.aktivSide = 'spill';
+module.exports = (db) => {
+	const TPR = require('./spill/turbinPaaRad.js');
+	const turbinquiz = require('./spill/turbinquiz.js');
+	
+	const ruter = express.Router();
+	
+	ruter.use('/', (req, res, next) => {
+		req.aktivSide = 'spill';
+		next();
+	});
 
-	req.hbsdata.headLenker += `	<style>
-									.innediv {
-										text-align: left;
-										max-width: 800px;
-									}
 
-									innediv img {
-										border: 3px solid #000000;
-										border-radius: 5px;
-									}
-									button {
-										width: 125px;
-										margin-left: 3px;
-										line-height: 40px;
-										border: 1px solid #000000;
-										border-radius: 5px;
-									}
+	ruter.use('/turbinP%C3%A5Rad', TPR); // /turbinPåRad
+	ruter.use('/turbinquiz', turbinquiz);
 
-									button:hover {
-										background-color: #6495ED;
-										cursor: pointer;
-									}
+	ruter.get('/', asyncMiddleware(async (req, res, next) => {
+		req.hbsdata.tittel = 'Spill og quiz - Vindturbinismen';
 
-									label {
-										display: block;
-									}
-								</style>`;
-	req.hbsdata.tittel = 'Spill og quiz - Vindturbinismen';
-	req.hbsdata.js += '<script src="/JS/spill/turbinquiz.js"></script>';
+		lagSide(req, res, 'spill', req.hbsdata, next);
+	}));
 
-	lagSide(req, res, 'spill', req.hbsdata, next);
-}));
 
-module.exports = ruter;
+	return ruter;
+};
