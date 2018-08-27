@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+
+  overflow: hidden;
+}
+
+.App-title {
+  font-size: 4.5em;
+  font-family: Amatic SC, sans-serif;
+
+  margin: 40px;
+}
