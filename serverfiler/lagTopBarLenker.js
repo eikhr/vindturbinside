@@ -5,7 +5,7 @@ module.exports = function (aktiv) {
 			navn: 'Tekster'
 		},{
 			url: '/spill/',
-			navn: 'Quiz'
+			navn: 'Spill'
 		},{
 			url: '/forum/',
 			navn: 'Forum'
