@@ -61,8 +61,8 @@ module.exports = (db) => {
 				if (req.body.passord !== req.body.bekreft_passord) throw 'Passordene er ikke like';
 				if (req.body.passord.length < 4) throw 'Seriøst? Under 4 tegn i passordet? Lag et bedre passord';
 
-				let epostTatt = db.bruker.sjekkBruker('Epost', req.body.epost);
-				let navnTatt = db.bruker.sjekkBruker('Navn', req.body.brukernavn);
+				let epostTatt = db.bruker.sjekkEpostTatt(req.body.epost);
+				let navnTatt = db.bruker.sjekkBrukerTatt(req.body.brukernavn);
 
 				if (await epostTatt) throw 'E-postadressen er allerede i bruk';
 				if (await navnTatt) throw 'Brukernavnet er allerede i bruk';

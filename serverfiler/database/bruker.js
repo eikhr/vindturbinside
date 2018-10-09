@@ -30,8 +30,14 @@ module.exports = con => {
 			}
 		},
 
-		sjekkBrukerTatt: async (navn, epost) => {
-			let resultat = await dbquery('SELECT BrukerID FROM bruker WHERE Navn = ? OR Epost = ?', [navn, epost]);
+		sjekkBrukerTatt: async (navn) => {
+			let resultat = await dbquery('SELECT BrukerID FROM bruker WHERE Navn = ?', [navn]);
+
+			return Boolean(resultat[0]);
+		},
+
+		sjekkEpostTatt: async (epost) => {
+			let resultat = await dbquery('SELECT BrukerID FROM bruker WHERE Epost = ?', [epost]);
 
 			return Boolean(resultat[0]);
 		},
