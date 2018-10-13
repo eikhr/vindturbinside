@@ -88,11 +88,17 @@ function redigerKlikk(knapp) {
 	nyHoveddel.setAttribute('action', '');
 	nyHoveddel.setAttribute('class', 'hoveddel');
 	nyHoveddel.setAttribute('method', 'POST');
-	nyHoveddel.innerHTML = '<textarea name="kommentarInnhold">'+gammelTekst+'</textarea><input type="hidden" name="kommentarID" value="'+knapp.value+'"><input type="submit" value="Endre" name="redigerKommentar">';
+	nyHoveddel.innerHTML = '<textarea name="kommentarInnhold">'+gammelTekst+'</textarea><input type="hidden" name="kommentarID" value="'+knapp.value+'"><button class="avbrytredigerknapp">Avbryt</button><input type="submit" value="Endre" name="redigerKommentar">';
 
-	hoveddel.parentNode.replaceChild(nyHoveddel, hoveddel);
+	var hovedParent = hoveddel.parentNode;
+	hovedParent.replaceChild(nyHoveddel, hoveddel);
 
-	hoveddel.querySelector('textarea').focus();
+	nyHoveddel.querySelector('textarea').focus();
+
+	nyHoveddel.querySelector('.avbrytredigerknapp').addEventListener('click', (evt)=>{
+		evt.preventDefault();
+		hovedParent.replaceChild(hoveddel, nyHoveddel);
+	});
 }
 
 

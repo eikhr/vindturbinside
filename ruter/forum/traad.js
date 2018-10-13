@@ -39,7 +39,6 @@ module.exports = (db) => {
 			for (let innlegg of req.hbsdata.innlegg) {
 				if (innlegg.bruker.navn === req.session.bruker.navn) {
 					innlegg.innloggetBruker = true;
-					console.log(innlegg.endretDato);
 				}
 			}
 		}
