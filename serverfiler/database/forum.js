@@ -142,7 +142,7 @@ module.exports = con => {
 						id: rad.id,
 						innhold: rad.innhold,
 						opprettetDato: formaterDato(rad.opprettetDato, 'vanlig'),
-						endretDato: (rad.opprettetDato === rad.endretDato)? formaterDato(rad.endretDato, 'vanlig'): false,
+						endretDato: (Date.parse(rad.opprettetDato) !== Date.parse(rad.endretDato))? formaterDato(rad.endretDato, 'vanlig'): false,
 						bruker: {
 							navn: rad.brukernavn,
 							bilde: 'https://vindturbin.s3.amazonaws.com/pb/' + rad.brukerbilde
@@ -160,7 +160,7 @@ module.exports = con => {
 						id: rad.id,
 						innhold: rad.innhold,
 						opprettetDato: formaterDato(rad.opprettetDato, 'vanlig'),
-						endretDato: (rad.opprettetDato === rad.endretDato)? formaterDato(rad.endretDato, 'vanlig'): false,
+						endretDato: (Date.parse(rad.opprettetDato) !== Date.parse(rad.endretDato))? formaterDato(rad.endretDato, 'vanlig'): false,
 						bruker: {
 							navn: rad.brukernavn,
 							bilde: 'https://vindturbin.s3.amazonaws.com/pb/' + rad.brukerbilde
@@ -173,6 +173,12 @@ module.exports = con => {
 			return innlegg;
 		},
 
+		hentInnleggBruker: async(innleggID) => {
+			let resultat = await dbquery('SELECT BrukerID FROM foruminnlegg WHERE ForumInnleggID = ?', [innleggID]);
+
+			return resultat[0]['BrukerID'];
+		},
+
 		leggTilKategori: async(navn, beskrivelse) => {
 			let resultat = await dbquery('INSERT INTO forumkategori (Navn, Beskrivelse, BildeID) VALUES (?, ?, 6)', [navn, beskrivelse]);
 
@@ -183,6 +189,12 @@ module.exports = con => {
 			let resultat = await dbquery('INSERT INTO foruminnlegg (Innhold, OpprettetDato, EndretDato, ForumEmneID, BrukerID) VALUES (?, NOW(), NOW(), ?, ?)', [innhold, emne, bruker]);
 
 			return resultat.insertId;
+		},
+
+		redigerKommentar: async(id, innhold) => {
+			let resultat = await dbquery('UPDATE foruminnlegg SET Innhold = ?, EndretDato = NOW() WHERE ForumInnleggID = ?', [innhold, id]);
+
+			return;
 		},
 
 		leggTilTraad: (kategori, brukerID, tittel, innhold) => {

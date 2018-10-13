@@ -20,30 +20,28 @@
 								{{/with}}
 							</div>
 							<div class="underdel">
-								<span class="dato" title="{{opprettetDato.[1]}}">{{opprettetDato.[0]}}</span>
+								<span class="dato" {{#if endretDato}}title="Redigert {{endretDato.[0]}}"{{/if}}>{{opprettetDato.[0]}}{{#if endretDato}}*{{/if}}</span>
 							</div>
 						</div>
 						<div class="hoveddel">
 							<div class="tekst markdown">
 								{{markdown innhold}}
 							</div>
-							<div class="tekst rentekst" hidden='hidden'>
-								{{nl2br innhold}}
-							</div>
+							<div class="tekst rentekst" hidden='hidden'>{{nl2br innhold}}</div>
 							<div class="likerklikk">
 								<div class="tooltip likerklikktekst" data-id="{{id}}"><span class="num">{{likerklikk}}</span> liker dette
 									<span class="likernavn tooltiptext tooltip-top">Dette krever javascript</span>
 								</div>
 							</div>
 							<div class="toolbar">
-								<button class="rentekst">Vis ren tekst</button>
+								<button class="rentekst">Vis kildetekst</button>
 								{{#if ../bruker}}
-									{{!--
 									{{#if innloggetBruker}}
-										<button>Rediger</button>
-										<button>Slett</button>
+										<button class="redigerInnlegg" value="{{id}}">Rediger</button>
+										{{!--
+											<button>Slett</button>
+										--}}
 									{{/if}}
-									--}}
 									<button class="likInnlegg" value="{{id}}">{{#if likt}}Slutt å like{{else}}Lik{{/if}}</button>
 								{{/if}}
 							</div>

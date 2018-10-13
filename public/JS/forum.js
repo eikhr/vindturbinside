@@ -21,7 +21,7 @@ if (nyKategoriEl) {
 }
 
 
-// 'Vis ren tekst' knappene
+// 'Vis kildetekst' knappene
 var renTekstKnapper = document.querySelectorAll('button.rentekst');
 
 for (var i = 0; i < renTekstKnapper.length; i++) {
@@ -70,6 +70,30 @@ function likerKlikk(knapp) {
 	});
 }
 
+// Rediger innlegg knapper
+var redigerKnapper = document.querySelectorAll('button.redigerInnlegg');
+
+for (var i = 0; i < redigerKnapper.length; i++) {
+	redigerKnapper[i].addEventListener("click", function() {
+		redigerKlikk(this);
+	});
+}
+
+function redigerKlikk(knapp) {
+	var hoveddel = knapp.parentNode.parentNode;
+
+	var gammelTekst = br2nl(hoveddel.querySelector('.tekst.rentekst').innerHTML);
+
+	var nyHoveddel = document.createElement('form');
+	nyHoveddel.setAttribute('action', '');
+	nyHoveddel.setAttribute('class', 'hoveddel');
+	nyHoveddel.setAttribute('method', 'POST');
+	nyHoveddel.innerHTML = '<textarea name="kommentarInnhold">'+gammelTekst+'</textarea><input type="hidden" name="kommentarID" value="'+knapp.value+'"><input type="submit" value="Endre" name="redigerKommentar">';
+
+	hoveddel.parentNode.replaceChild(nyHoveddel, hoveddel);
+
+	hoveddel.querySelector('textarea').focus();
+}
 
 
 // hente navn på de som liker noe når man hoverer
@@ -125,4 +149,13 @@ function xhttpPOST(url, data, callback) {
 	    }
 	}
 	http.send(data);
+}
+
+
+function br2nl(str) {
+	return str.replace(/<br\s*[\/]?>/gi, "\n");
+}
+
+function nl2br(str) {
+	return str.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '<br>')
 }
