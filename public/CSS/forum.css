@@ -57,7 +57,7 @@
 }
 .forumListe.venstre {
     position: relative;
-
+    max-width: 100%;
     flex-grow: 1;
 }
 .forumListe.hoyre {
