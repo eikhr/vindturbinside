@@ -1,0 +1,54 @@
+Alle requests for å legge til ting sendes med POST og JSON
+
+
+
+#/leggTilOrd (POST)
+
+brukes for å legge til ord med oversettelse til ordlisten.
+request skal sendes med JSON
+
+{
+	"vindturbinskOrd": ordet som skal legges til,
+	"ordTypeID": IDen til ordtypen,
+	"beskrivelse": beskrivelse av ordet, kan være en tom string,
+	"oversettelser": liste med norske ord som er betyr det samme som det vindturbinske ordet,
+	(optional)"sterkboying": //sterk bøyging json, se "Bøying JSON"//
+}
+
+eks.
+{
+	"vindturbinskOrd": "Floh",
+	"ordTypeID": "1",
+	"beskrivelse": "",
+	"oversettelser": ["dam", "vanndam"]
+}
+
+
+
+# Bøying JSON
+
+## til bøyginsmønstre
+{
+	"kolonner": liste med kolonnetittelene,
+	"rader": liste med radtittelene,
+	"verdier": todimensjonal liste med verdiene, ? for ordstammen. Må ha like mange kolonner og rader som "kolonner" og "rader" listene.
+}
+
+eks.
+{
+	"kolonner": ["Ubestemt én", "Bestemt én", "Ubestemt fler", "Bestemt fler"],
+	"rader": ["Nom.", "Akk.", "Dat."],
+	"verdier": [
+		["?", "?en", "?er", "?ene"], 
+		["?ij", "?in", "?ir", "?ine"], 
+		["?e", "?em", "?ener", "?ærne"]
+	]
+}
+
+## til sterk bøying
+
+her kreves ikke kolonner og rader, ettersom disse hentes fra ordtypen
+
+{
+	"verdier": todimensjonal liste med verdiene. Må ha like mange kolonner og rader som "kolonner" og "rader" listene til ordtypen.
+}

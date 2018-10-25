@@ -16,6 +16,8 @@ require('./serverfiler/hbsInit.js')(hbs);
 
 // starter databasetilkoblingen
 var db = require('./serverfiler/database.js')();
+// og ordbokdatabasen
+var initOrdbokDb = require("./ordbokAPI/ordbokDatabase").initDb;
 
 // inkluder egne moduler
 const sjekkLogin = require('./serverfiler/sjekkLogin')(db);
@@ -36,6 +38,7 @@ const registrerBruker = require('./ruter/registrerBruker.js')(db);
 const resetPassord = require('./ruter/resetPassord.js')(db);
 const byttBrukerbilde = require('./ruter/byttBrukerbilde')(db);
 const forum = require('./ruter/forum.js')(db);
+const ordbokAPI = require('./ordbokAPI/ordbokAPI.js');
 
 const app = express();
 
@@ -70,6 +73,7 @@ app.use(sjekkCookieVarsel);
 
 // definerer rutene til de ulike sidene
 app.use('/AJAX', ajax);
+app.use('/ordbokAPI', ordbokAPI);
 
 app.use('/', forside);
 app.use('/tekster', tekster);
@@ -102,10 +106,13 @@ app.use(function(err, req, res, next) {
 	lagSide(req, res, 'feil', req.hbsdata);
 });
 
+waitForDatabasesAndStart();
 
-app.listen(process.env.PORT || 8080);
+async function waitForDatabasesAndStart() {
+	await Promise.all([db, initOrdbokDb()]);
 
-
+	app.listen(process.env.PORT || 8080);
+}
 	
 /*
 	// lager serveren. Funksjonen blir kjørt hver gang noen laster inn en side.
