@@ -1,24 +1,16 @@
 var tilkobling = require('../serverfiler/database/dbTilkobling.js');
 
-const mysqlssh = require('mysql-ssh');
+const mysql = require("mysql");
 
 async function kobleTil1() {
 	console.log('Starter tilkobling til databasen');
 	try {
-		let con = await mysqlssh.connect(
-			{
-				host: 'ssh.phx.nearlyfreespeech.net',
-				user: 'vindturbin_turbin',
-				port: 22,
-				password: 'miwoofrioxoe'
-			},
-			{
-				host: 'vindturbin.db',
-				user: 'script',
-				password: '##ReM%lp4B5V',
-				database: 'vindturbin'
-			}
-		);
+		let con = await mysql.createConnection({
+			host: "mysql",
+			user: process.env.MYSQL_USER,
+			password: process.env.MYSQL_PASSWORD,
+			database: 'vindturbin'
+		});
 		console.log('Koblet til databasen!');
 		return con;
 	} catch (err) {

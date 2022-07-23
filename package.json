@@ -5,11 +5,12 @@
   "main": "index.js",
   "dependencies": {
     "aws-sdk": "^2.266.1",
-    "bcrypt": "^2.0.1",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.18.3",
     "cookie": "^0.3.1",
     "cookie-parser": "^1.4.3",
     "dateformat": "^3.0.3",
+    "dotenv": "^16.0.1",
     "email-validator": "^2.0.3",
     "eslint": "^4.19.1",
     "express": "^4.16.3",
@@ -21,18 +22,17 @@
     "locutus": "^2.0.9",
     "markdown-it": "^8.4.1",
     "morgan": "^1.9.0",
-    "mysql": "^2.15.0",
-    "mysql-ssh": "^1.0.6",
+    "mysql": "^2.18.1",
     "npm": "^6.0.1",
     "remove-markdown": "^0.2.2",
     "serve-favicon": "^2.5.0",
-    "sharp": "^0.20.2"
+    "sharp": "^0.30.7"
   },
   "devDependencies": {
     "nodemon": "^1.17.4"
   },
   "scripts": {
-  	"start": "node index.js",
+    "start": "node index.js",
     "devstart": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

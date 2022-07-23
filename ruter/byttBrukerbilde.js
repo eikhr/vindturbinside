@@ -8,9 +8,9 @@ const sharp = require('sharp');
 const formidable = require('formidable');
 const fs = require('fs');
 
-const BUCKET_NAME = 'vindturbin';
-const IAM_USER_KEY = 'AKIAJVNGQIQIEAKWHLDQ';
-const IAM_USER_SECRET = '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';
+const BUCKET_NAME = process.env.BUCKET_NAME;
+const IAM_USER_KEY = process.env.IAM_USER_KEY;
+const IAM_USER_SECRET = process.env.IAM_USER_SECRET;
 
 
 module.exports = (db) => {

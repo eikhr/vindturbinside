@@ -1,5 +1,4 @@
 const mysql = require('mysql');
-const mysqlssh = require('mysql-ssh');
 
 
 /*
@@ -29,20 +28,12 @@ module.exports = async () => {
 module.exports = async function() {
 	console.log('Starter tilkobling til databasen');
 	try {
-		let con = await mysqlssh.connect(
-			{
-				host: 'ssh.phx.nearlyfreespeech.net',
-				user: 'vindturbin_turbin',
-				port: 22,
-				password: 'miwoofrioxoe'
-			},
-			{
-				host: 'vindturbin.db',
-				user: 'script',
-				password: '##ReM%lp4B5V',
-				database: 'turbin'
-			}
-		);
+		let con = await mysql.createConnection({
+			host: "mysql",
+			user: process.env.MYSQL_USER,
+			password: process.env.MYSQL_PASSWORD,
+			database: 'turbin'
+		});
 		console.log('Koblet til databasen!');
 		return con;
 	} catch (err) {

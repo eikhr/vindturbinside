@@ -1,5 +1,5 @@
 const assert = require('assert');
-const mysqlssh = require('mysql-ssh');
+const mysql = require('mysql');
 
 let _db;
 
@@ -16,20 +16,12 @@ async function initDb() {
 
 	console.log('Initializing connection to "ordbok" database');
 	try {
-		let db = await mysqlssh.connect(
-			{
-				host: 'ssh.phx.nearlyfreespeech.net',
-				user: 'vindturbin_turbin',
-				port: 22,
-				password: 'miwoofrioxoe'
-			},
-			{
-				host: 'vindturbin.db',
-				user: 'script',
-				password: '##ReM%lp4B5V',
-				database: 'ordbok'
-			}
-		);
+		let db = await mysql.createConnection({
+			host: "mysql",
+			user: process.env.MYSQL_USER,
+			password: process.env.MYSQL_PASSWORD,
+			database: 'ordbok'
+		});
 		console.log('Successfully connected to "ordbok"');
 
 		_db = db;
