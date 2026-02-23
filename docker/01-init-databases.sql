@@ -99,6 +99,12 @@ INSERT INTO bilde (Filnavn, Dato, BrukerID) VALUES
     ('default2.png', NOW(), NULL),
     ('default3.png', NOW(), NULL);
 
+-- Seed: default text categories
+INSERT INTO tekstkategori (Navn) VALUES
+    ('Generelt'),
+    ('Historie'),
+    ('Teknikk');
+
 
 -- ============================================================
 -- ordbok database
