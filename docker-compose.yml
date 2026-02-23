@@ -2,11 +2,12 @@ version: '3.9'
 
 services:
   mysql:
-    image: mysql:8
+    image: mysql:8.0
     ports:
       - 3306:3306
     volumes:
-      - ~/apps/mysql:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
+      - ./docker:/docker-entrypoint-initdb.d
     env_file:
       - ./.env
     environment:
@@ -16,6 +17,12 @@ services:
       - MYSQL_DATABASE=turbin
     command: --default-authentication-plugin=mysql_native_password
     restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
   website:
     env_file:
       - ./.env
@@ -34,4 +41,8 @@ services:
       - "8080:8080"
     restart: always
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql_data:
