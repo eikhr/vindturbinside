@@ -53,7 +53,7 @@ module.exports = (db) => {
 			if (readable) {
 				sharp(this.openedFiles[0].path)
 					.resize(200, 200)
-					.background('white')
+					.flatten({ background: '#ffffff' })
 					.png()
 					.toBuffer()
 					.then(async (data) => {
